@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               children: [
                 GestureDetector(
-                  onTap: () => context.pushNamed('/restaurant'),
+                  onTap: () => context.go('/home/restaurant'),
                   child: RestaurantCardItem(
                       name: "Papa John's",
                       imageUrl:
