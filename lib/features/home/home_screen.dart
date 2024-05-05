@@ -12,10 +12,13 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("TableTap",
               style: TextStyle(
+                  fontFamily: "monospace",
                   fontWeight: FontWeight.w600,
+                  fontSize: 32,
                   color: Colors.white.withAlpha(240))),
           backgroundColor: Colors.red[700],
           elevation: 4,
+          centerTitle: true,
         ),
         body: LayoutBuilder(
           builder: (context, constraints) {
@@ -29,13 +32,16 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildMobile(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Наши рестораны",
-              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24)),
+          Text(
+            "Наши рестораны",
+            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+          ),
           const SizedBox(
-            height: 24,
+            height: 8,
           ),
           Expanded(
             child: ListView(
@@ -43,14 +49,14 @@ class HomeScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context.pushNamed('/home/restaurant'),
                   child: RestaurantCardItem(
-                      name: "Papa John's",
+                      name: "Testaurant 1",
                       imageUrl:
                           "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?cs=srgb&dl=pexels-chanwalrus-958545.jpg&fm=jpg"),
                 ),
                 RestaurantCardItem(
-                    name: "Papa John's",
+                    name: "Testaurant 2",
                     imageUrl:
-                        "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?cs=srgb&dl=pexels-chanwalrus-958545.jpg&fm=jpg"),
+                        "https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg"),
               ],
             ),
           )

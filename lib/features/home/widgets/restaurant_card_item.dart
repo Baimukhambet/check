@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RestaurantCardItem extends StatelessWidget {
   const RestaurantCardItem(
@@ -13,7 +11,7 @@ class RestaurantCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(top: 24),
+      margin: const EdgeInsets.only(top: 24),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       width: size.width,
       height: 180,
@@ -34,11 +32,11 @@ class RestaurantCardItem extends StatelessWidget {
                   ),
                 )),
           ),
-          const Positioned(
+          Positioned(
               left: 16,
               bottom: 16,
-              child: Text("Hello world!",
-                  style: TextStyle(
+              child: Text(name,
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 24)))

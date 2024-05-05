@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tabletap/repositories/cart_repository.dart';
 import 'package:tabletap/repositories/models/models.dart';
 
 class MealDialogue extends StatelessWidget {
@@ -52,7 +54,9 @@ class MealDialogue extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<CartRepository>().addToCart(meal);
+                        },
                         child: Text('Добавить в заказ'),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
