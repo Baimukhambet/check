@@ -31,10 +31,14 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: 
+  scrollview_observer: 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  equatable: ^2.0.5
+  top_snackbar_flutter: ^3.1.0
 
 dev_dependencies:
   flutter_test:
