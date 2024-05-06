@@ -18,8 +18,8 @@ class MealItem extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(boxShadow: <BoxShadow>[
             BoxShadow(
-                offset: const Offset(1, 4),
-                blurRadius: 4,
+                offset: const Offset(1, 2),
+                blurRadius: 2,
                 color: Colors.black.withAlpha(80))
           ], color: Colors.white, borderRadius: BorderRadius.circular(16)),
           child: Column(

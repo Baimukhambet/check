@@ -38,6 +38,8 @@ class RestaurantScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
+          backgroundColor: Colors.grey[200],
+          scrolledUnderElevation: 0,
           title: const Text("Steak House",
               style: const TextStyle(fontWeight: FontWeight.bold)),
           actions: [

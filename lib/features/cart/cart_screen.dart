@@ -31,15 +31,25 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [Text("Всего:")],
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text("Оформляем"),
                     style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 14),
                         backgroundColor: Colors.black,
-                        foregroundColor: Colors.white))),
+                        foregroundColor: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Text("Оформляем"),
+                    ))),
           )
         ],
       ),

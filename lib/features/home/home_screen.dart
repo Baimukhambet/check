@@ -10,13 +10,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("TableTap",
+          title: Text("Tabletap",
               style: TextStyle(
-                  fontFamily: "monospace",
+                  // fontFamily: "monospace",
                   fontWeight: FontWeight.w600,
                   fontSize: 32,
                   color: Colors.white.withAlpha(240))),
-          backgroundColor: Colors.red[700],
+          backgroundColor: Color.fromARGB(255, 159, 34, 34),
           elevation: 4,
           centerTitle: true,
         ),

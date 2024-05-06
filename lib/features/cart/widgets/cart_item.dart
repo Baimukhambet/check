@@ -23,17 +23,29 @@ class CartItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.network(meal.imageUrl,
-                fit: BoxFit.cover, width: 90, height: 80),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                Text(meal.name),
-                Text(meal.price.toStringAsFixed(2)),
+                Image.network(meal.imageUrl,
+                    fit: BoxFit.cover, width: 90, height: 80),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(meal.name),
+                    Text('\$' + meal.price.toStringAsFixed(2)),
+                  ],
+                ),
               ],
             ),
+            Row(
+              children: [
+                Icon(Icons.remove_circle_outline),
+                Text("1"),
+                Icon(Icons.add_circle_outline)
+              ],
+            )
           ],
         ));
   }
