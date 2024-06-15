@@ -17,7 +17,7 @@ class CartItem extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 blurRadius: 4,
-                offset: Offset(1, 4),
+                offset: const Offset(1, 4),
                 color: Colors.black.withAlpha(80))
           ],
           borderRadius: BorderRadius.circular(12),
@@ -39,10 +39,12 @@ class CartItem extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
+            const Row(
               children: [
                 Icon(Icons.remove_circle_outline),
+                SizedBox(width: 8),
                 Text("1"),
+                SizedBox(width: 8),
                 Icon(Icons.add_circle_outline)
               ],
             )

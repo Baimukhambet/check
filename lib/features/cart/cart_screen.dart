@@ -47,7 +47,7 @@ class CartScreen extends StatelessWidget {
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text("Оформляем"),
                     ))),
           )

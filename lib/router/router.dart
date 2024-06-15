@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tabletap/features/cart/cart_screen.dart';
 import 'package:tabletap/features/home/home_screen.dart';
 import 'package:tabletap/features/restaurant/restaurant_screen.dart';
+import 'package:tabletap/repositories/models/restaurant.dart';
 
 final GoRouter router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
@@ -12,7 +13,9 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/home/restaurant',
     name: '/home/restaurant',
-    builder: (context, state) => RestaurantScreen(),
+    builder: (context, state) => RestaurantScreen(
+      restaurant: state.extra as Restaurant,
+    ),
   ),
   GoRoute(
     path: '/cart',

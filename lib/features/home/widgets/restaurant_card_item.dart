@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tabletap/repositories/models/restaurant.dart';
 
 class RestaurantCardItem extends StatelessWidget {
   const RestaurantCardItem(
-      {super.key, required this.name, required this.imageUrl});
+      {super.key,
+      // required this.name,
+      // required this.imageUrl,
+      required this.restaurant});
 
-  final String name;
-  final String imageUrl;
+  // final String name;
+  // final String imageUrl;
+
+  final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class RestaurantCardItem extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network(imageUrl, fit: BoxFit.fitWidth)),
+              child: Image.network(restaurant.imageUrl, fit: BoxFit.fitWidth)),
           Positioned.fill(
             child: Opacity(
                 opacity: 0.5,
@@ -35,7 +41,7 @@ class RestaurantCardItem extends StatelessWidget {
           Positioned(
               left: 16,
               bottom: 16,
-              child: Text(name,
+              child: Text(restaurant.name,
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
