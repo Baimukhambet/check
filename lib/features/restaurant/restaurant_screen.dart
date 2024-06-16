@@ -103,7 +103,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                   icon: Icon(Icons.arrow_circle_left,
                       color: Colors.white, size: 44),
                   onPressed: () {
-                    context.pop();
+                    context.go('/');
                   },
                 )),
             Positioned(

@@ -11,8 +11,8 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
     builder: (context, state) => HomeScreen(),
   ),
   GoRoute(
-    path: '/home/restaurant',
-    name: '/home/restaurant',
+    path: '/:restaurantName',
+    name: '/restaurant',
     builder: (context, state) => RestaurantScreen(
       restaurant: state.extra as Restaurant,
     ),

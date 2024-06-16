@@ -21,7 +21,7 @@ class NewMealItem extends StatelessWidget {
                 ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Image.network(meal.imageUrl,
-                        width: 100, fit: BoxFit.cover)),
+                        width: 100, fit: BoxFit.fill)),
                 SizedBox(width: 24),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
