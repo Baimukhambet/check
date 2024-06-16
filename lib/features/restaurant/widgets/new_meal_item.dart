@@ -1,11 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tabletap/repositories/models/meal.dart';
 
 class NewMealItem extends StatelessWidget {
-  const NewMealItem({Key? key, required this.meal}) : super(key: key);
+  NewMealItem(
+      {Key? key,
+      required this.meal,
+      this.qty = 0,
+      required this.onAdd,
+      required this.onRemove})
+      : super(key: key);
 
   final Meal meal;
+  final int qty;
+
+  final VoidCallback onAdd;
+  final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +33,7 @@ class NewMealItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: Image.network(meal.imageUrl,
                         width: 100, fit: BoxFit.fill)),
-                SizedBox(width: 24),
+                const SizedBox(width: 24),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,7 +44,25 @@ class NewMealItem extends StatelessWidget {
                 ),
               ],
             ),
-            Icon(Icons.add_circle, size: 38, color: Colors.grey[500])
+            if (qty == 0)
+              GestureDetector(
+                  onTap: onAdd,
+                  child:
+                      Icon(Icons.add_circle, size: 38, color: Colors.grey[500]))
+            else
+              Row(
+                children: [
+                  GestureDetector(
+                      onTap: onAdd,
+                      child: Icon(Icons.add_circle,
+                          size: 38, color: Colors.grey[500])),
+                  Text("$qty"),
+                  GestureDetector(
+                      onTap: onRemove,
+                      child: Icon(Icons.remove_circle,
+                          size: 38, color: Colors.grey[500])),
+                ],
+              )
           ],
         ));
   }

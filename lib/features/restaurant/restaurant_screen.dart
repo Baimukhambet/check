@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
+import 'package:tabletap/features/cart/bloc/cart_bloc.dart';
 import 'package:tabletap/features/restaurant/bloc/order_bloc.dart';
 import 'package:tabletap/features/restaurant/widgets/meal_dialogue.dart';
 import 'package:tabletap/features/restaurant/widgets/new_meal_item.dart';
@@ -36,6 +37,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     );
   }
 
+  final cartBloc = CartBloc();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -45,7 +48,15 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
 
   void loadMenu() async {
     menu = await MenuRepository().getMenu();
-    setState(() {});
+    setState(() {
+      // cartBloc.add(CartAddedProduct(
+      //     meal: Meal(
+      //         category: "s",
+      //         name: "test",
+      //         id: 1,
+      //         imageUrl: "url",
+      //         price: 10.0)));
+    });
   }
 
   List<Meal> menu = [];
@@ -74,6 +85,24 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           )
         ],
       ),
+      floatingActionButton: BlocBuilder<CartBloc, CartState>(
+        bloc: cartBloc,
+        builder: (context, state) {
+          switch (state) {
+            case CartLoaded():
+              return Container(
+                  width: double.infinity,
+                  height: 60,
+                  color: Colors.black,
+                  child: Center(
+                      child: Text("Перейти к оплате ${state.totalAmount}",
+                          style: TextStyle(color: Colors.white))));
+            default:
+              return Container();
+          }
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -129,11 +158,44 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         ),
         SizedBox(height: 12),
         Expanded(
-          child: ListView.separated(
-              padding: EdgeInsets.zero,
-              separatorBuilder: (context, index) => Divider(),
-              itemCount: menu.length,
-              itemBuilder: (context, index) => NewMealItem(meal: menu[index])),
+          child: BlocBuilder<CartBloc, CartState>(
+            bloc: cartBloc,
+            builder: (context, state) {
+              if (state is CartLoaded) {
+                return ListView.separated(
+                    padding: EdgeInsets.zero,
+                    separatorBuilder: (context, index) => Divider(),
+                    itemCount: menu.length,
+                    itemBuilder: (context, index) {
+                      final qty = state.meals.containsKey(menu[index])
+                          ? state.meals[menu[index]]!
+                          : 0;
+                      return NewMealItem(
+                          meal: menu[index],
+                          onAdd: () =>
+                              cartBloc.add(CartAddedProduct(meal: menu[index])),
+                          onRemove: () => cartBloc
+                              .add(CartRemovedProduct(meal: menu[index])),
+                          qty: qty);
+                    });
+              } else {
+                debugPrint("building meal item...");
+                return ListView.separated(
+                    padding: EdgeInsets.zero,
+                    separatorBuilder: (context, index) => Divider(),
+                    itemCount: menu.length,
+                    itemBuilder: (context, index) {
+                      return NewMealItem(
+                        meal: menu[index],
+                        onAdd: () =>
+                            cartBloc.add(CartAddedProduct(meal: menu[index])),
+                        onRemove: () =>
+                            cartBloc.add(CartRemovedProduct(meal: menu[index])),
+                      );
+                    });
+              }
+            },
+          ),
         )
       ],
     );
