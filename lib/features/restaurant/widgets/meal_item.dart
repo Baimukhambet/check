@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tabletap/repositories/models/models.dart';
 
 class MealItem extends StatelessWidget {
@@ -35,9 +36,7 @@ class MealItem extends StatelessWidget {
               const SizedBox(height: 14),
               Column(
                 children: [
-                  Text(meal.name,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                  Text(meal.name, style: GoogleFonts.montserrat()),
                   Text('\$' + meal.price.toStringAsFixed(2)),
                 ],
               ),
