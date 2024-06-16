@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tabletap/extensions/extensions.dart';
 import 'package:tabletap/repositories/models/meal.dart';
 
 class NewMealItem extends StatelessWidget {
@@ -24,6 +25,7 @@ class NewMealItem extends StatelessWidget {
     return Container(
         height: 100,
         // padding: EdgeInsets.only(bottom: 12),
+        margin: EdgeInsets.only(bottom: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -56,7 +58,13 @@ class NewMealItem extends StatelessWidget {
                       onTap: onAdd,
                       child: Icon(Icons.add_circle,
                           size: 38, color: Colors.grey[500])),
-                  Text("$qty"),
+                  // 6.width,
+                  SizedBox(
+                      width: 30,
+                      child: Center(
+                          child:
+                              Text("$qty", style: theme.textTheme.titleSmall))),
+                  // 6.width,
                   GestureDetector(
                       onTap: onRemove,
                       child: Icon(Icons.remove_circle,

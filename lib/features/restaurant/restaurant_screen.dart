@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollview_observer/scrollview_observer.dart';
+import 'package:tabletap/extensions/extensions.dart';
 import 'package:tabletap/features/cart/bloc/cart_bloc.dart';
 import 'package:tabletap/features/restaurant/bloc/order_bloc.dart';
 import 'package:tabletap/features/restaurant/widgets/meal_dialogue.dart';
@@ -73,15 +74,26 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       // appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      // body: Column(
+      //   crossAxisAlignment: CrossAxisAlignment.start,
+      //   children: [
+      //     _buildRestaurantCard(context, size),
+      //     Expanded(
+      //       child: Padding(
+      //         padding: const EdgeInsets.all(16.0),
+      //         child: _buildMenu(context, size, theme),
+      //       ),
+      //     )
+      //   ],
+      // ),
+      body: ListView(
+        padding: EdgeInsets.zero,
         children: [
           _buildRestaurantCard(context, size),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: _buildMenu(context, size, theme),
-            ),
+          12.height,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: _buildMenu(context, size, theme),
           )
         ],
       ),
@@ -157,46 +169,82 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           style: theme.textTheme.displayLarge,
         ),
         SizedBox(height: 12),
-        Expanded(
-          child: BlocBuilder<CartBloc, CartState>(
-            bloc: cartBloc,
-            builder: (context, state) {
-              if (state is CartLoaded) {
-                return ListView.separated(
-                    padding: EdgeInsets.zero,
-                    separatorBuilder: (context, index) => Divider(),
-                    itemCount: menu.length,
-                    itemBuilder: (context, index) {
-                      final qty = state.meals.containsKey(menu[index])
-                          ? state.meals[menu[index]]!
-                          : 0;
-                      return NewMealItem(
-                          meal: menu[index],
-                          onAdd: () =>
-                              cartBloc.add(CartAddedProduct(meal: menu[index])),
-                          onRemove: () => cartBloc
-                              .add(CartRemovedProduct(meal: menu[index])),
-                          qty: qty);
-                    });
-              } else {
-                debugPrint("building meal item...");
-                return ListView.separated(
-                    padding: EdgeInsets.zero,
-                    separatorBuilder: (context, index) => Divider(),
-                    itemCount: menu.length,
-                    itemBuilder: (context, index) {
-                      return NewMealItem(
-                        meal: menu[index],
-                        onAdd: () =>
-                            cartBloc.add(CartAddedProduct(meal: menu[index])),
+        BlocBuilder(
+          bloc: cartBloc,
+          builder: (context, state) {
+            if (state is CartLoaded) {
+              return Column(
+                children: [
+                  ...menu.map((e) {
+                    final qty =
+                        state.meals.containsKey(e) ? state.meals[e]! : 0;
+                    return NewMealItem(
+                        meal: e,
+                        onAdd: () => cartBloc.add(CartAddedProduct(meal: e)),
                         onRemove: () =>
-                            cartBloc.add(CartRemovedProduct(meal: menu[index])),
-                      );
-                    });
-              }
-            },
-          ),
-        )
+                            cartBloc.add(CartRemovedProduct(meal: e)),
+                        qty: qty);
+                  })
+                ],
+              );
+            } else {
+              debugPrint("building meal item...");
+              return Column(
+                children: [
+                  ...menu.map((e) {
+                    return NewMealItem(
+                        meal: e,
+                        onAdd: () => cartBloc.add(CartAddedProduct(meal: e)),
+                        onRemove: () =>
+                            cartBloc.add(CartRemovedProduct(meal: e)),
+                        qty: 0);
+                  })
+                ],
+              );
+            }
+          },
+        ),
+        // ...menu.map((e) => NewMealItem(meal: e, onAdd: () {}, onRemove: () {}))
+        // Expanded(
+        //   child: BlocBuilder<CartBloc, CartState>(
+        //     bloc: cartBloc,
+        //     builder: (context, state) {
+        //       if (state is CartLoaded) {
+        //         return ListView.separated(
+        //             padding: EdgeInsets.zero,
+        //             separatorBuilder: (context, index) => Divider(),
+        //             itemCount: menu.length,
+        //             itemBuilder: (context, index) {
+        //               final qty = state.meals.containsKey(menu[index])
+        //                   ? state.meals[menu[index]]!
+        //                   : 0;
+        //               return NewMealItem(
+        //                   meal: menu[index],
+        //                   onAdd: () =>
+        //                       cartBloc.add(CartAddedProduct(meal: menu[index])),
+        //                   onRemove: () => cartBloc
+        //                       .add(CartRemovedProduct(meal: menu[index])),
+        //                   qty: qty);
+        //             });
+        //       } else {
+        //         debugPrint("building meal item...");
+        //         return ListView.separated(
+        //             padding: EdgeInsets.zero,
+        //             separatorBuilder: (context, index) => Divider(),
+        //             itemCount: menu.length,
+        //             itemBuilder: (context, index) {
+        //               return NewMealItem(
+        //                 meal: menu[index],
+        //                 onAdd: () =>
+        //                     cartBloc.add(CartAddedProduct(meal: menu[index])),
+        //                 onRemove: () =>
+        //                     cartBloc.add(CartRemovedProduct(meal: menu[index])),
+        //               );
+        //             });
+        //       }
+        //     },
+        //   ),
+        // )
       ],
     );
   }
