@@ -15,6 +15,8 @@ import 'package:tabletap/repositories/cart_repository.dart';
 import 'package:tabletap/repositories/menu_repository.dart';
 import 'package:tabletap/repositories/models/models.dart';
 import 'package:tabletap/repositories/models/restaurant.dart';
+import 'package:tabletap/repositories/services/payment_service.dart';
+import 'package:tabletap/repositories/services/rkeeper_service.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class RestaurantScreen extends StatefulWidget {
@@ -68,24 +70,13 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     orderBloc.add(OrderChangedCategory(category: category));
   }
 
+  final rkeeper_service = RkeeperService.shared;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     return Scaffold(
-      // appBar: AppBar(),
-      // body: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.start,
-      //   children: [
-      //     _buildRestaurantCard(context, size),
-      //     Expanded(
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(16.0),
-      //         child: _buildMenu(context, size, theme),
-      //       ),
-      //     )
-      //   ],
-      // ),
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -102,13 +93,24 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         builder: (context, state) {
           switch (state) {
             case CartLoaded():
-              return Container(
-                  width: double.infinity,
-                  height: 60,
-                  color: Colors.black,
-                  child: Center(
-                      child: Text("Перейти к оплате ${state.totalAmount}",
-                          style: TextStyle(color: Colors.white))));
+              return InkWell(
+                onTap: () async {
+                  final response = await rkeeper_service.getMenu();
+                  final paymentResponse =
+                      await PaymentService.shared.makePayment();
+                  debugPrint(response.body);
+                  debugPrint(paymentResponse.body);
+
+                  context.push('/${widget.restaurant.name}/payment');
+                },
+                child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    color: Colors.black,
+                    child: Center(
+                        child: Text("Перейти к оплате \$${state.totalAmount}",
+                            style: theme.textTheme.headlineLarge))),
+              );
             default:
               return Container();
           }

@@ -22,4 +22,8 @@ final theme = ThemeData(
       //MEAL PRICE
       titleSmall: TextStyle(
           color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),
+
+      //CHECKOUT BUTTON
+      headlineLarge: GoogleFonts.montserrat(
+          fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
     ));

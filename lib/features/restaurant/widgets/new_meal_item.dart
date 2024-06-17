@@ -55,8 +55,8 @@ class NewMealItem extends StatelessWidget {
               Row(
                 children: [
                   GestureDetector(
-                      onTap: onAdd,
-                      child: Icon(Icons.add_circle,
+                      onTap: onRemove,
+                      child: Icon(Icons.remove_circle,
                           size: 38, color: Colors.grey[500])),
                   // 6.width,
                   SizedBox(
@@ -66,8 +66,8 @@ class NewMealItem extends StatelessWidget {
                               Text("$qty", style: theme.textTheme.titleSmall))),
                   // 6.width,
                   GestureDetector(
-                      onTap: onRemove,
-                      child: Icon(Icons.remove_circle,
+                      onTap: onAdd,
+                      child: Icon(Icons.add_circle,
                           size: 38, color: Colors.grey[500])),
                 ],
               )
