@@ -1,17 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:tabletap/extensions/extensions.dart';
 import 'package:tabletap/repositories/models/meal.dart';
 
 class NewMealItem extends StatelessWidget {
-  NewMealItem(
-      {Key? key,
+  const NewMealItem(
+      {super.key,
       required this.meal,
       this.qty = 0,
       required this.onAdd,
-      required this.onRemove})
-      : super(key: key);
+      required this.onRemove});
 
   final Meal meal;
   final int qty;
@@ -25,7 +21,7 @@ class NewMealItem extends StatelessWidget {
     return Container(
         height: 100,
         // padding: EdgeInsets.only(bottom: 12),
-        margin: EdgeInsets.only(bottom: 12),
+        margin: const EdgeInsets.only(bottom: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,7 +36,7 @@ class NewMealItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(meal.name, style: theme.textTheme.titleMedium),
-                    Text('\$' + meal.price.toStringAsFixed(2),
+                    Text('\$${meal.price.toStringAsFixed(2)}',
                         style: theme.textTheme.titleSmall)
                   ],
                 ),

@@ -10,8 +10,8 @@ sealed class CartState extends Equatable {
 final class CartInitial extends CartState {}
 
 final class CartLoaded extends CartState {
-  Map<Meal, int> meals;
-  double totalAmount;
+  final Map<Meal, int> meals;
+  final double totalAmount;
 
   CartLoaded(this.meals)
       : totalAmount =

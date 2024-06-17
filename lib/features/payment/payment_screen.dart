@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({super.key});
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -18,7 +18,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   void _mockPaymentProcessing() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _isProcessing = false;
       });
@@ -30,7 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       appBar: !_isProcessing ? AppBar() : null,
       body: Center(
-        child: _isProcessing ? CircularProgressIndicator() : Text("Оплачено!"),
+        child: _isProcessing ? const CircularProgressIndicator() : const Text("Оплачено!"),
       ),
     );
   }

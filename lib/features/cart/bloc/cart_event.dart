@@ -8,11 +8,11 @@ sealed class CartEvent extends Equatable {
 }
 
 final class CartAddedProduct extends CartEvent {
-  Meal meal;
-  CartAddedProduct({required this.meal});
+  final Meal meal;
+  const CartAddedProduct({required this.meal});
 }
 
 final class CartRemovedProduct extends CartEvent {
-  Meal meal;
-  CartRemovedProduct({required this.meal});
+  final Meal meal;
+  const CartRemovedProduct({required this.meal});
 }

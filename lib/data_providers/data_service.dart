@@ -1,6 +1,6 @@
 class MenuProvider {
   Future<Map<String, dynamic>> fetchMenu() async {
-    await Future.delayed(Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 200));
 
     return {
       "1": {

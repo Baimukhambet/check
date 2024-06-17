@@ -9,7 +9,7 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/',
     name: '/',
-    builder: (context, state) => HomeScreen(),
+    builder: (context, state) => const HomeScreen(),
   ),
   GoRoute(
     path: '/:restaurantName',
@@ -21,11 +21,11 @@ final GoRouter router = GoRouter(initialLocation: '/', routes: [
   GoRoute(
     path: '/cart',
     name: '/cart',
-    builder: (context, state) => CartScreen(),
+    builder: (context, state) => const CartScreen(),
   ),
   GoRoute(
     path: '/:restaurantName/payment',
     name: '/payment',
-    builder: (context, state) => PaymentScreen(),
+    builder: (context, state) => const PaymentScreen(),
   ),
 ]);

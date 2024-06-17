@@ -10,7 +10,7 @@ sealed class OrderEvent extends Equatable {
 final class OrderChangedCategory extends OrderEvent {
   final String category;
 
-  OrderChangedCategory({required this.category});
+  const OrderChangedCategory({required this.category});
 
   @override
   // TODO: implement props

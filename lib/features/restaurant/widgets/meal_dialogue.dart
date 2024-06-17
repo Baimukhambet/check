@@ -16,7 +16,7 @@ class MealDialogue extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(16)),
-        padding: EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.only(bottom: 16),
         width: size.width * 0.8,
         height: size.height * 0.6,
         child: Column(
@@ -44,7 +44,7 @@ class MealDialogue extends StatelessWidget {
                         Text(meal.name,
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold)),
-                        Text('\$' + meal.price.toStringAsFixed(2),
+                        Text('\$${meal.price.toStringAsFixed(2)}',
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
                       ],
@@ -58,19 +58,19 @@ class MealDialogue extends StatelessWidget {
                           context.read<CartRepository>().addToCart(meal);
                           context.pop();
                         },
-                        child: Text('Добавить в заказ'),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             foregroundColor: Colors.white),
+                        child: const Text('Добавить в заказ'),
                       ),
                       ElevatedButton(
                         onPressed: () {
                           context.pop();
                         },
-                        child: Text('Закрыть'),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                             foregroundColor: Colors.white),
+                        child: const Text('Закрыть'),
                       )
                     ],
                   )

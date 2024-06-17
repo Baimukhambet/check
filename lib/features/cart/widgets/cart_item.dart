@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tabletap/repositories/models/meal.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key, required this.meal}) : super(key: key);
+  const CartItem({super.key, required this.meal});
 
   final Meal meal;
 
@@ -34,7 +33,7 @@ class CartItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(meal.name),
-                    Text('\$' + meal.price.toStringAsFixed(2)),
+                    Text('\$${meal.price.toStringAsFixed(2)}'),
                   ],
                 ),
               ],

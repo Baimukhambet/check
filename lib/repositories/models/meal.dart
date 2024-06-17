@@ -7,7 +7,7 @@ class Meal extends Equatable {
   final double price;
   final String category;
 
-  Meal(
+  const Meal(
       {required this.id,
       required this.name,
       required this.imageUrl,

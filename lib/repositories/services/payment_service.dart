@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:tabletap/repositories/models/cart_credentials.dart';
 
 class PaymentService {
   static final shared = PaymentService._();
@@ -14,7 +13,7 @@ class PaymentService {
 
   Future<http.Response> makePayment() async {
     final String basicAuth =
-        'Basic ' + base64Encode(utf8.encode('$_username:$_password'));
+        'Basic ${base64Encode(utf8.encode('$_username:$_password'))}';
     final Map<String, dynamic> requestBody = {
       "request": {
         "amount": 100,

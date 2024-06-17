@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class FoodTypeTile extends StatelessWidget {
-  const FoodTypeTile({Key? key, required this.imageUrl, required this.title})
-      : super(key: key);
+  const FoodTypeTile({super.key, required this.imageUrl, required this.title});
 
   final String imageUrl;
   final String title;
@@ -15,7 +14,7 @@ class FoodTypeTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.network(imageUrl,
                 width: 60, height: 60, fit: BoxFit.fill)),
-        Text(title, style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14))
+        Text(title, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14))
       ],
     ));
   }

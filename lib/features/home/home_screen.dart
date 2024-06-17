@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tabletap/features/home/widgets/food_type_tile.dart';
 import 'package:tabletap/features/home/widgets/restaurant_card_item.dart';
 import 'package:tabletap/repositories/models/restaurant.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 32,
                   color: Colors.white.withAlpha(240))),
-          backgroundColor: Color.fromARGB(255, 159, 34, 34),
+          backgroundColor: const Color.fromARGB(255, 159, 34, 34),
           elevation: 4,
           centerTitle: true,
         ),
@@ -36,12 +33,12 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildMobile(BuildContext context) {
-    final restaurant_one = Restaurant(
+    final restaurantOne = Restaurant(
         name: "Testaurant 1",
         imageUrl:
             "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?cs=srgb&dl=pexels-chanwalrus-958545.jpg&fm=jpg");
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,7 +56,7 @@ class HomeScreen extends StatelessWidget {
           //     ],
           //   ),
           // ),
-          Text(
+          const Text(
             "Наши рестораны",
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
           ),
@@ -70,9 +67,9 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               children: [
                 GestureDetector(
-                    onTap: () => context.go('/${restaurant_one.name}',
-                        extra: restaurant_one),
-                    child: RestaurantCardItem(restaurant: restaurant_one)),
+                    onTap: () => context.go('/${restaurantOne.name}',
+                        extra: restaurantOne),
+                    child: RestaurantCardItem(restaurant: restaurantOne)),
                 // RestaurantCardItem(
                 //     name: "Testaurant 2",
                 //     imageUrl:
@@ -87,20 +84,20 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildDesktop(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.6,
           child: Column(
             children: [
-              Text("Наши рестораны",
+              const Text("Наши рестораны",
                   style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24)),
               const SizedBox(
                 height: 24,
               ),
               Expanded(
                 child: ListView(
-                  children: [
+                  children: const [
                     // GestureDetector(
                     //   child: RestaurantCardItem(
                     //       name: "Papa John's",

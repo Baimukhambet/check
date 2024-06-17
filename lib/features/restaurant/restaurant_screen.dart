@@ -1,26 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:scrollview_observer/scrollview_observer.dart';
 import 'package:tabletap/extensions/extensions.dart';
 import 'package:tabletap/features/cart/bloc/cart_bloc.dart';
 import 'package:tabletap/features/restaurant/bloc/order_bloc.dart';
 import 'package:tabletap/features/restaurant/widgets/meal_dialogue.dart';
 import 'package:tabletap/features/restaurant/widgets/new_meal_item.dart';
-import 'package:tabletap/features/restaurant/widgets/widgets.dart';
-import 'package:tabletap/repositories/cart_repository.dart';
 import 'package:tabletap/repositories/menu_repository.dart';
 import 'package:tabletap/repositories/models/models.dart';
 import 'package:tabletap/repositories/models/restaurant.dart';
-import 'package:tabletap/repositories/services/payment_service.dart';
 import 'package:tabletap/repositories/services/rkeeper_service.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class RestaurantScreen extends StatefulWidget {
-  RestaurantScreen({super.key, required this.restaurant});
+  const RestaurantScreen({super.key, required this.restaurant});
 
   final Restaurant restaurant;
 
@@ -122,7 +114,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
 
   Widget _buildRestaurantCard(BuildContext context, Size size) {
     final theme = Theme.of(context);
-    return Container(
+    return SizedBox(
         height: size.height * 0.3,
         child: Stack(
           // fit: StackFit.expand,
@@ -143,19 +135,19 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                 left: 4,
                 top: 44,
                 child: IconButton(
-                  icon: Icon(Icons.arrow_circle_left,
+                  icon: const Icon(Icons.arrow_circle_left,
                       color: Colors.white, size: 44),
                   onPressed: () {
                     context.go('/');
                   },
                 )),
             Positioned(
+              left: 16,
+              bottom: 28,
               child: Text(
                 widget.restaurant.name,
                 style: theme.textTheme.titleLarge,
               ),
-              left: 16,
-              bottom: 28,
             )
           ],
         ));
@@ -170,7 +162,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           "Menu",
           style: theme.textTheme.displayLarge,
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         BlocBuilder(
           bloc: cartBloc,
           builder: (context, state) {
