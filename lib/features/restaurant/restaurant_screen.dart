@@ -95,11 +95,11 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             case CartLoaded():
               return InkWell(
                 onTap: () async {
-                  final response = await rkeeper_service.getMenu();
-                  final paymentResponse =
-                      await PaymentService.shared.makePayment();
-                  debugPrint(response.body);
-                  debugPrint(paymentResponse.body);
+                  // final response = await rkeeper_service.getMenu();
+                  // final paymentResponse =
+                  //     await PaymentService.shared.makePayment();
+                  // debugPrint(response.body);
+                  // debugPrint(paymentResponse.body);
 
                   context.push('/${widget.restaurant.name}/payment');
                 },
