@@ -139,6 +139,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       color: Colors.white, size: 44),
                   onPressed: () {
                     context.go('/');
+                    // context.pop();
                   },
                 )),
             Positioned(
