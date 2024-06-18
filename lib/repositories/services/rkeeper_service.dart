@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RkeeperService {
@@ -21,11 +22,13 @@ class RkeeperService {
 
     var headers = {
       'AggregatorAuthentication': aggregatorAuthenticationValue,
-      'Content-Type': 'application/json',
+      'Content-Type': "application/json;charset=UTF-8",
     };
 
     var response =
         await http.post(Uri.parse(url), headers: headers, body: body);
+
+    debugPrint(response.body);
     return response;
   }
 }

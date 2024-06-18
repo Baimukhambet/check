@@ -11,17 +11,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   final MenuRepository menuRepository = MenuRepository();
 
   OrderBloc() : super(OrderInitial()) {
-    on<OrderChangedCategory>(_orderChangedCategory);
+    // on<OrderChangedCategory>(_orderChangedCategory);
   }
-  void _orderChangedCategory(OrderChangedCategory event, Emitter emit) async {
-    emit(OrderLoading());
-    try {
-      final menu = await menuRepository.getMenuByCategory(event.category);
-      emit(OrderLoaded(menu: menu, category: event.category));
-    } catch (e) {
-      emit(OrderFail(e.toString()));
-    }
-  }
+  // void _orderChangedCategory(OrderChangedCategory event, Emitter emit) async {
+  //   emit(OrderLoading());
+  //   try {
+  //     final menu = await menuRepository.getMenuByCategory(event.category);
+  //     emit(OrderLoaded(menu: menu, category: event.category));
+  //   } catch (e) {
+  //     emit(OrderFail(e.toString()));
+  //   }
+  // }
 
   @override
   void onTransition(Transition<OrderEvent, OrderState> transition) {

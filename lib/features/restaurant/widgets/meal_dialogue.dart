@@ -26,7 +26,7 @@ class MealDialogue extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16)),
-                child: Image.network(meal.imageUrl,
+                child: Image.network(meal.imageUrls.first,
                     fit: BoxFit.cover, width: size.width * 0.8),
               ),
             ),

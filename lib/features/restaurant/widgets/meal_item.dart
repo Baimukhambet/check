@@ -28,7 +28,7 @@ class MealItem extends StatelessWidget {
                   flex: 3,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(meal.imageUrl,
+                    child: Image.network(meal.imageUrls.first,
                         fit: BoxFit.cover, width: double.infinity),
                   )),
               const SizedBox(height: 14),

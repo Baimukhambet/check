@@ -42,7 +42,9 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   }
 
   void loadMenu() async {
-    menu = await MenuRepository().getMenu();
+    menu = await MenuRepository().getMenuRkeeper();
+    // debugPrint(testMenu.toString());
+    // menu = await MenuRepository().getMenu();
     setState(() {
       // cartBloc.add(CartAddedProduct(
       //     meal: Meal(

@@ -26,7 +26,7 @@ class CartItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.network(meal.imageUrl,
+                Image.network(meal.imageUrls.first,
                     fit: BoxFit.cover, width: 90, height: 80),
                 const SizedBox(width: 16),
                 Column(
