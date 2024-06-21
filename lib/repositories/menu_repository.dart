@@ -29,8 +29,14 @@ class MenuRepository extends ChangeNotifier {
     // final Map<String, dynamic> decodedJson = jsonDecode(response.body);
     final Map<String, dynamic> decodedJson =
         json.decode(utf8.decode(response.bodyBytes));
-    final List<dynamic> productsJson =
-        decodedJson['taskResponse']['menu']['products'];
-    return productsJson.map((json) => Meal.fromJson(json)).toList();
+    try {
+      final List<dynamic> productsJson =
+          decodedJson['taskResponse']['menu']['products'];
+      return productsJson.map((json) => Meal.fromJson(json)).toList();
+    } catch (e) {
+      debugPrint(e.toString());
+      final menu = await getMenu();
+      return menu;
+    }
   }
 }

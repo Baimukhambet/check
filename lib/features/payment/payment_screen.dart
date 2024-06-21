@@ -27,10 +27,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: !_isProcessing ? AppBar() : null,
       body: Center(
-        child: _isProcessing ? const CircularProgressIndicator() : const Text("Оплачено!"),
+        child: _isProcessing
+            ? const CircularProgressIndicator(color: Colors.black)
+            : Text("Оплачено!", style: theme.textTheme.displayLarge),
       ),
     );
   }
