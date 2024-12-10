@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              if (constraints.maxWidth > 700) {
-                return _buildDesktop(context);
-              }
+              // if (constraints.maxWidth > 900) {
+              //   return _buildDesktop(context);
+              // }
               return _buildMobile(context);
             },
           ),
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Text("Какой настрой на сегодня?",
           //     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24)),
@@ -56,9 +56,13 @@ class HomeScreen extends StatelessWidget {
           //     ],
           //   ),
           // ),
-          const Text(
-            "Наши рестораны",
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              "Наши рестораны",
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+              textAlign: TextAlign.start,
+            ),
           ),
           const SizedBox(
             height: 8,
@@ -76,7 +80,16 @@ class HomeScreen extends StatelessWidget {
                 //         "https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg"),
               ],
             ),
-          )
+          ),
+          GestureDetector(
+              onTap: () {
+                context.go('/user-agreement/text');
+              },
+              child: Text("Пользовательское соглашение",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.blueAccent,
+                      decoration: TextDecoration.underline)))
         ],
       ),
     );
